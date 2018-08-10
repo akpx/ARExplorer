@@ -1,0 +1,6 @@
+target 'ARExplorer' do
+  use_frameworks!
+  platform :ios, '11.0'
+  pod 'ViroReact', :path => '../node_modules/react-viro/ios/'
+  pod 'ViroKit', :path => '../node_modules/react-viro/ios/dist/ViroRenderer/'
+end

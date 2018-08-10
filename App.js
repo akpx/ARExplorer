@@ -1,37 +1,31 @@
 import React from 'react';
-import { Alert, StyleSheet, Text, View, Image,  TouchableHighlight, Platform } from 'react-native';
+import { Button, View, Text } from 'react-native';
+import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
+
+import { Home } from './src/components/main/Home';
+import { ARView } from './src/components/main/ARView';
+
+const RootStack = createStackNavigator(
+  {
+    Home: Home,
+    Details: ARView,
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'rgb(118,187,72)',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
+);
 
 export default class App extends React.Component {
-  _onPressButton() {
-    Alert.alert('You tapped the button!')
-  }
-
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.introText}> Tap on Finn to start your adventure</Text>
-        <TouchableHighlight
-            onPress={this._onPressButton}
-            style={{width: '100%'}} >
-            <View style={{width: '100%'}} >
-              <Image style={{width: '100%'}}  source={require('./images/giphy.gif')} />
-            </View>
-        </TouchableHighlight>
-      </View>
-    );
+    return <RootStack />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#69abe8',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  introText: {
-    color: '#fff',
-    fontSize: 25,
-    marginBottom: 20
-  },
-});

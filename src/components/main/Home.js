@@ -6,15 +6,10 @@ export class Home extends React.Component {
     title: 'AR Explorer',
   };
 
-  _onPressButton() {
-    Alert.alert('You tapped the button!');
-    this.props.navigation.navigate('Details');
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.introText}> Tap on Finn to start your adventure</Text>
+        <Text style={styles.introText}> Tap Finn to get started</Text>
         <TouchableHighlight
             onPress={() => this.props.navigation.navigate('Details')}
             style={{width: '100%'}} >

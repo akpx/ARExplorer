@@ -199,3 +199,14 @@ There are a few steps you may want to take to troubleshoot these kinds of errors
 If you're not able to scan the QR code, make sure your phone's camera is focusing correctly, and also make sure that the contrast on the two colors in your terminal is high enough. For example, WebStorm's default themes may [not have enough contrast](https://github.com/react-community/create-react-native-app/issues/49) for terminal QR codes to be scannable with the system barcode scanners that the Expo app uses.
 
 If this causes problems for you, you may want to try changing your terminal's color theme to have more contrast, or running Create React Native App from a different terminal. You can also manually enter the URL printed by the packager script in the Expo app's search bar to load it manually.
+
+
+### Note: Possible linking error with vlog_is_on.oo
+
+If you run into a linking error with vlog_is_on.oo(https://github.com/facebook/react-native/issues/18022) do the following:
+
+a) In XCode open node_modules/react-native/third-party/glog-0.3.4/src/vlog_is_on.cc
+b) Edit line 52, change the line to(rename v to v2): GLOG_DEFINE_int32(v2, 0, "Show all VLOG(m) messages for m <= this."
+c) Edit line 55: change the line frome GLOG_DEFINE_string(vmodule... to GLOG_DEFINE_string(vmodule2...
+d) Edit line 133: Change the line to const char* vmodule = FLAGS_vmodule2.c_str()
+e) Recompile, the app should link.
